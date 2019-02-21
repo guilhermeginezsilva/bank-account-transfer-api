@@ -48,15 +48,14 @@ public class Application {
     public static Account demoAccount1 = new Account("7e75dff6-05b9-4cf6-aaa1-701007d6c09c", new BigDecimal(100000), System.currentTimeMillis(), demoCustomer1);
     public static Account demoAccount2 = new Account("876822b6-d676-432e-9aab-721c6eeb9f3c", new BigDecimal(50000), System.currentTimeMillis(), demoCustomer2);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServletException {
         try {
             HashMap<String, Object> parameters = parseArgs(args);
             Application application = new Application(parameters);
             application.startApplication();
         } catch(Exception e) {
-            System.out.println("An error has ocurred, check application's log for more information");
             log.error(e);
-            System.exit(-1);
+            throw e;
         }
     }
 
@@ -69,6 +68,9 @@ public class Application {
         this.startContainer(serverListenerPort, host);
     }
 
+    public void stopContainer() {
+        server.stop();
+    }
 
     private void startContainer(int port, String host) throws ServletException {
         prepareData();

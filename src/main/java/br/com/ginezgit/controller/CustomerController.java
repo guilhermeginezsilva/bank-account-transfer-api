@@ -54,8 +54,8 @@ public class CustomerController {
     @POST
     public Response createCustomer(Customer customer) {
         try {
-            log.debug(Thread.currentThread().getId() + " Request received: createCustomer("+customer.getName()+")" );
             validateCreateCustomer(customer);
+            log.debug(Thread.currentThread().getId() + " Request received: createCustomer("+customer.getName()+")" );
             Customer newCustomer = this.customerService.createNewCustomer(customer);
             return Response.ok(newCustomer).build();
         } catch (InvalidInputParameterValueException e) {
@@ -111,8 +111,8 @@ public class CustomerController {
     @Path("/{customerId}")
     public Response updateCustomer(@PathParam("customerId") String customerId, Customer customer) {
         try {
-            log.debug(Thread.currentThread().getId() + " Request received: updateCustomer("+customerId+","+customer.getName()+")" );
             validateUpdateCustomer(customerId, customer);
+            log.debug(Thread.currentThread().getId() + " Request received: updateCustomer("+customerId+","+customer.getName()+")" );
 
             customer.setId(customerId);
             Customer updatedCustomer = this.customerService.updateCustomer(customer);

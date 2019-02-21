@@ -1,0 +1,246 @@
+{
+	"variables": [],
+	"info": {
+		"name": "BankAPI",
+		"_postman_id": "1ef6faec-2f6f-1797-a134-60b34dfe2fdc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"url": "localhost:8080/bankapi/account",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account",
+					"request": {
+						"url": "localhost:8080/bankapi/account/7e75dff6-05b9-4cf6-aaa1-701007d6c09c",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"url": "localhost:8080/bankapi/customer",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"url": "localhost:8080/bankapi/customer",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Nome de Teste 5\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account For Customer",
+					"request": {
+						"url": "localhost:8080/bankapi/customer/cfb77865-3135-4a00-9e39-457dfb682424/createAccount",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer",
+					"request": {
+						"url": "localhost:8080/bankapi/customer/ce1cc441-a7f3-4a40-9e94-2a69c0cc54bf",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"url": "localhost:8080/bankapi/customer/7d788634-1cbf-4286-ad8f-60289621341c",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Nome de Teste\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Transactions",
+					"request": {
+						"url": "localhost:8080/bankapi/account/transactions",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"request": {
+						"url": "localhost:8080/bankapi/account/transfer",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fromAccountId",
+									"value": "7e75dff6-05b9-4cf6-aaa1-701007d6c09c",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "toAccountId",
+									"value": "876822b6-d676-432e-9aab-721c6eeb9f3c",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1000",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Credit",
+					"request": {
+						"url": "localhost:8080/bankapi/account/credit",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountId",
+									"value": "7e75dff6-05b9-4cf6-aaa1-701007d6c09c",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Debit",
+					"request": {
+						"url": "localhost:8080/bankapi/account/debit",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountId",
+									"value": "7e75dff6-05b9-4cf6-aaa1-701007d6c09c",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "50",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

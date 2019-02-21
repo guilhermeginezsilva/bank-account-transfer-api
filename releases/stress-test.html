@@ -1,0 +1,178 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<style>
+	body {
+		background-color: lightgray;
+		width: 80%;
+		margin: auto;
+	}
+	
+	.jumbotron {
+		background-color: gray;
+		color: white;
+	}
+	
+	.form-group {
+		display: flex;
+		flex-direction: row;
+		margin: 10px;
+	}
+	
+	.card-header {
+		background-color: gray;
+		color: white;
+	}
+	
+	.card-body {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	
+	.control {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.results {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+	
+	.btn {
+		cursor: pointer;
+		color: white !important;
+		font-weight: bold;
+	}
+
+</style>
+
+<script>
+		let timeVar = 1;
+	
+		let accountFrom;
+		let accountTo;
+		let amount;
+		let time;
+			
+		
+			
+		function transfer() { 
+			  $.ajax({
+				  type: "POST",
+				  url: "http://localhost:8080/bankapi/account/transfer",
+				  data: {
+						fromAccountId: accountFrom,
+						toAccountId: accountTo,
+						amount: amount
+					  },
+				  success: function(msg){
+					response200.val(parseInt(response200.val())+1);
+					sentRequests.val(parseInt(sentRequests.val())+1);
+				  },
+				  error: function(XMLHttpRequest, textStatus, errorThrown) {
+					responseNot200.val(parseInt(responseNot200.val())+1);
+					sentRequests.val(parseInt(sentRequests.val())+1);
+				  }
+				});
+		  }
+		  
+		function stress() {
+			accountFrom=$("#accountFrom").val();
+			accountTo=$("#accountTo").val();
+			amount=$("#amount").val();
+			time=$("#inputMs").val();
+		
+			if(!accountFrom || !accountTo || !amount || !time) {
+				alert("An error has ocurred");
+				return;
+			}
+		
+			timeVar = setInterval(function(){
+				transfer();
+			}, time);
+			
+			$("#btStart").hide();
+			$("#btStop").show();
+		}
+		
+		function stopStress() {
+			clearInterval(timeVar);
+			$("#btStart").show();
+			$("#btStop").hide();
+		}
+	</script>
+
+<body>
+	<div class="jumbotron">
+		<h1 class="display-4">Bank Account Transfer API</h1>
+		<p class="lead">This is a simple application to stress the API transfer service</p>
+		<hr class="my-4">
+	</div>
+	
+	<div class="card">
+		<div class="card-header">
+		Stress Test Panel
+		</div>
+		<div class="card-body">
+		
+			<div class="control">
+				<a id="btStart"  onclick="stress()" class="btn btn-primary">Start</a>
+				<a id="btStop"  onclick="stopStress()" class="btn btn-danger">Stop</a>
+				
+				<div class="form-group">
+					<label for="inputMs">Time between requests: (ms)</label>
+					<input class="form-control" id="inputMs" type="text" value="1"/>
+				</div>
+				<div class="form-group">
+					<label for="accountFrom">Account Id From:</label>
+					<input class="form-control" id="accountFrom" type="text" value="7e75dff6-05b9-4cf6-aaa1-701007d6c09c"/>
+				</div>
+				<div class="form-group">
+					<label for="accountTo">Account Id To:</label>
+					<input class="form-control" id="accountTo" type="text" value="876822b6-d676-432e-9aab-721c6eeb9f3c"/>
+				</div>
+				<div class="form-group">
+					<label for="amount">Amount:</label>
+					<input class="form-control" id="amount" type="text" value="10.85"/>
+				</div>
+			</div>
+			
+			<div class="results">
+				<div class="form-group">
+					<label for="requestSents">Request sents:</label>
+					<input class="form-control" id="requestSents" disabled="true" type="text" value="0"/>
+				</div>
+				<div class="form-group">
+					<label for="response200">Response 200:</label>
+					<input class="form-control" id="response200" disabled="true" type="text" value="0"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="responseNot200">Response Not 200:</label>
+					<input class="form-control" id="responseNot200" disabled="true" type="text" value="0"/>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+
+<script>
+
+		$("#btStop").hide();
+		let response200=$("#response200");
+		let responseNot200=$("#responseNot200");
+		let sentRequests=$("#requestSents");
+
+</script>
+
+</html>

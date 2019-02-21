@@ -18,18 +18,25 @@ public class ComponentTest {
 
     @Test
     public void applicationServerOnlineOnLocalhostAnd8080Test() throws Exception {
-        String[] args = {};
-        Application.main(args);
+        HashMap args = new HashMap();
+
+        Application application = new Application(args);
+        application.startApplication();
+
         HttpTransport transport = new MockHttpTransport();
         HttpRequest request = transport.createRequestFactory().buildGetRequest(new GenericUrl("http://localhost:8080/bankapi/account"));
         HttpResponse response = request.execute();
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+        application.stopContainer();
     }
 
     @Test
-    public void basicTransferTest() throws Exception {
-        String[] args = {};
-        Application.main(args);
+    public void transferTest() throws Exception {
+        HashMap args = new HashMap();
+
+        Application application = new Application(args);
+        application.startApplication();
+
         HttpTransport httpTransport = new NetHttpTransport();
         HttpRequestFactory httpRequestFactory = httpTransport.createRequestFactory();
 
@@ -47,6 +54,7 @@ public class ComponentTest {
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
         Assert.assertEquals(0, new BigDecimal(99000).compareTo(Application.demoAccount1.getBalance()));
         Assert.assertEquals(0, new BigDecimal(51000).compareTo(Application.demoAccount2.getBalance()));
+        application.stopContainer();
     }
 
 }

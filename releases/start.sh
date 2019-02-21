@@ -1,0 +1,1 @@
+java -jar bank-account-transfer-api-1.0-SNAPSHOT.jar
