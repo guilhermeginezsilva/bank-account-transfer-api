@@ -77,3 +77,5 @@ Well, running the tests you can check that the application is working correctly,
 
     ###In the releases directory just open the 
     stress-test.html and run it;
+	
+	Important: If you start receiving error transactions after a lot of good transactions, probably that's because the account balance is insufficient, just restart the application, it will reset the balances.
