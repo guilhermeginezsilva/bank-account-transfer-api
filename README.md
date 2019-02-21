@@ -32,7 +32,7 @@
 ### Important:
 1. Git is necessary if you want to clone the project to your computer, if you don't want to install git, consider downloading the project in the github repository;
 
-2. To run tests it's mandatory to have gradle installed in your computer, instructions to download and install can be found here:
+2. To run tests it's mandatory to have gradle 4 installed in your computer, instructions to download and install can be found here:
 https://gradle.org/
 
 3. Java 8+ is mandatory to run the project, so to run it you must install Java 8+ in your computer;
