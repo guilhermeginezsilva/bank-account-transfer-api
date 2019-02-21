@@ -78,7 +78,7 @@ Well, you can check that the application is working correctly running the unit a
     ###In the releases directory just open the 
     stress-test.html and run it on your browser, I've just tested on Chrome, but it may work on other ones;
 	
-* Important: 
+**Important:** 
 1. If you start receiving error transactions after a lot of good transactions, probably that's because the account balance is insufficient, just restart the application, it will reset the balances. 
 
 2. Thist page already comes with 2 default accounts filled in the fields, these accounts have a balance of:
@@ -87,7 +87,9 @@ Account2(7e75dff6-05b9-4cf6-aaa1-701007d6c09c): £ 50,000.00
 
 3. These data are always created when the application starts, so if you restart the application it will recreate all the data:
 Customer (ddcdfb95-2a6e-4156-b295-f01516cd3b5c): Customer 1
+
 Customer (7d788634-1cbf-4286-ad8f-60289621341c): Customer 2
 
 Account (7e75dff6-05b9-4cf6-aaa1-701007d6c09c): £ 100,000.00
+
 Account (7e75dff6-05b9-4cf6-aaa1-701007d6c09c): £ 50,000.00
