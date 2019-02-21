@@ -60,8 +60,7 @@ The first version of the executable was built and is available in a directory in
     ###On linux:
     ./start.sh
     
-    
-###It's Running!! And now?
+### It's Running!! And now?
 Well, running the tests you can check that the application is working correctly, but we know that there isn't nothing better than having some fun with these projects, so i'm did some helpful tools:
 
 * You can use Postman application; a script with the request structures is available also in the releases directory, just import in your postman application and have fun;
