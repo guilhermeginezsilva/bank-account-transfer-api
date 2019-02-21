@@ -46,6 +46,8 @@ public class AccountOperationService {
             transaction.setStatus(TransactionStatus.SUCCESSFUL);
             this.transactionDAO.insert(transaction.getRrn(), transaction);
         } catch (InsufficientAccountBalanceException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
@@ -53,6 +55,8 @@ public class AccountOperationService {
 
             throw e;
         } catch (EntityNotFoundException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
@@ -93,6 +97,8 @@ public class AccountOperationService {
             transaction.setStatus(TransactionStatus.SUCCESSFUL);
             this.transactionDAO.insert(transaction.getRrn(), transaction);
         } catch (InsufficientAccountBalanceException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
@@ -100,6 +106,8 @@ public class AccountOperationService {
 
             throw e;
         } catch (EntityNotFoundException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
@@ -140,6 +148,8 @@ public class AccountOperationService {
             transaction.setStatus(TransactionStatus.SUCCESSFUL);
             this.transactionDAO.insert(transaction.getRrn(), transaction);
         } catch (InsufficientAccountBalanceException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
@@ -147,6 +157,8 @@ public class AccountOperationService {
 
             throw e;
         } catch (EntityNotFoundException e) {
+            this.accountDAO.rollbackTransaction();
+
             if (transaction != null) {
                 transaction.setStatus(TransactionStatus.UNSUCCESSFUL);
                 this.transactionDAO.insert(transaction.getRrn(), transaction);
